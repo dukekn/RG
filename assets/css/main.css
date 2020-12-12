@@ -1,0 +1,154 @@
+@charset "utf-8";
+
+html {
+    color: #222;
+    font-size: 100%;
+    line-height: 1.42857143;
+    color: #333333;
+    background-color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    font-family: sans-serif;
+}
+
+body {
+    padding: inherit;
+    margin: inherit;
+    list-style: none;
+}
+*{
+    box-sizing: border-box;
+}
+h2,
+h3,
+p{
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+li{
+    list-style: none;
+}
+ul,li{
+    padding: 0;
+    margin: 0;
+}
+img{
+    -o-object-fit: cover;
+    object-fit: cover;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+main {
+    background: lightgray;
+    display: grid;
+    grid: auto / repeat(3, 1fr);
+    padding: 20px 0;
+}
+.results_container{
+    display: inline-grid;
+    grid-column: 2 / 3;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid darkgray;
+    padding: 20px 0;
+}
+.results_count{
+    font-size: small;
+    padding-left: 20px;
+    color: lightslategray;
+}
+article.person_result {
+    display: grid;
+    grid: auto / 75px 15px calc(100% - 90px);
+    align-content: center;
+    grid-template-areas: "person_image . person_details";
+}
+article.person_result  .image{
+    grid-area: person_image;
+    justify-self: end;
+    align-self: start;
+    padding-top: 15px;
+}
+article.person_result  .details{
+    grid-area: person_details;
+    text-align: left;
+    padding-bottom: 15px;
+    font-size: smaller;
+}
+.person_result:not(:last-of-type) .details{
+    border-bottom: 1px solid lightgray;
+}
+article.person_result:last-of-type{
+    border-bottom: 1px solid lightgray;
+}
+article.person_result{
+    margin-top: 10px;
+}
+.details h2 {
+    color: #6fa4db;
+    font-size: small;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.details h3{
+    font-size: smaller;
+}
+h3.company {
+    color: lightslategray;
+    margin-bottom: 5px;
+}
+.person_result img{
+    border-radius: 100%;
+}
+.bio {
+    padding-right: 15px;
+    display: block;
+}
+section.pagination {
+    padding: 20px 0;
+    display: grid;
+    grid: auto / 3fr auto 3fr;
+    align-items: center;
+    font-size: smaller;
+}
+.pagination ul {
+    display: grid;
+    grid: auto / repeat(10 , 1fr);
+}
+.pagination ul li{
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    line-height: 32px;
+}
+li.active {
+    background-color: dimgray;
+    color: white;
+    border-radius: 100%;
+}
+div[class^=btn_]{
+    padding: 5px;
+    border-radius: 4px;
+}
+div[class^=btn_]:not(.disabled):hover{
+   background-color: lightgray;
+}
+.btn_next {
+    justify-self: end;
+}
+.btn_back {
+    justify-self: start;
+}
+.disabled{
+    cursor: not-allowed;
+    color: lightgray;
+}
