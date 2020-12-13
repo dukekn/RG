@@ -4,11 +4,13 @@ require_once  'core'. DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR .  'a
 
 require_once 'Classes' . DIRECTORY_SEPARATOR . 'Employee.php';
 
-$Employee_results = new \APP\Classes\Employee();
+$employee_results = new \APP\Classes\Employee();
 
 $offset   = filter_var($_GET['offset']?? 0 , FILTER_SANITIZE_NUMBER_INT);
-$limit      = filter_var($_GET['limit']?? 10, FILTER_SANITIZE_NUMBER_INT);
 
-$Employee_results_array  = json_decode($Employee_results->getEmployeeResult($offset , $limit));
+$employee_results_array  = json_decode($employee_results->getEmployeeResult($offset));
+
+$employee_count    = $employee_results_array->count?? null;
+$employee_list          = $employee_results_array->list?? null;
 
 require_once 'template'. DIRECTORY_SEPARATOR. 'homepage.php';

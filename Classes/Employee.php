@@ -1,14 +1,15 @@
 <?php
+declare(strict_types=1);
+
 namespace APP\Classes;
 
 use GuzzleHttp\Client;
+//use GuzzleHttp\Exception\ClientException;
 
 class Employee
 {
 
-    private $offset = 0;
-
-    public function getEmployeeArr()
+        private function getEmployeeArr()
     {
 
         require_once 'vendor/autoload.php';
@@ -31,6 +32,7 @@ class Employee
 
             $resultsArray =  json_decode($result , true) ;
 
+            // @$resultsArray sanitize result if array
             if(is_array($resultsArray))
             {
                 $resultsArrayFiltered =  $this->sanitizeResultArray($resultsArray);
@@ -39,7 +41,9 @@ class Employee
             return $resultsArrayFiltered;
 
         } catch (\GuzzleHttp\Exception\ClientException $e) {
-            print $e->getMessage();
+//            print $e->getMessage();
+        } catch (\GuzzleHttp\Exception\RequestException $e) {
+//            print $e->getMessage();
         }
     }
 
@@ -149,13 +153,13 @@ class Employee
             {
                 $pagination .= '<a href="?offset='.  $total_pages .'"><li>'. $total_pages .'</li></a>';
             }
-            $pagination .= '</ul><div class="btn_next">';
+            $pagination .= '</ul><div class="btn_next ';
 
             if($page_current >= $total_pages)
             {
-                $pagination .= '<li class="disabled"> Next > </li>';
+                $pagination .= 'disabled"><li> Next > </li>';
             }else{
-                $pagination .= '<a href="?offset='. $page_next .'"><li> Next > </li></a>';
+                $pagination .= '"><a href="?offset='. $page_next .'"><li> Next > </li></a>';
             }
             $pagination .= '</div>';
 
@@ -173,7 +177,7 @@ class Employee
         }
     }
 
-    private  function sanitizeResultArray(array $array) : array
+    private function sanitizeResultArray(array $array) : array
     {
         $array_sanitized = [];
 

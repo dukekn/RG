@@ -46,11 +46,17 @@ img{
     -ms-user-select: none;
     user-select: none;
 }
+span.alert {
+    padding: 10px 20px;
+    background: #ec6736;
+    font-weight: bold;
+}
 main {
     background: lightgray;
     display: grid;
     grid: auto / repeat(3, 1fr);
     padding: 20px 0;
+    min-height: -webkit-fill-available;
 }
 .results_container{
     display: inline-grid;
